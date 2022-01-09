@@ -1,14 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import Search from "./Search";
 
-function App() {
-  return (
-    <div className="App">
-      <body>
-        <h1>Hello World</h1>
-      </body>
+const App = () => {
+  return(
+    <div>
+      <h1>Hello World!</h1>
+      <Search/>
     </div>
-  );
+  )
 }
 
 export default App;
