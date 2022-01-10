@@ -9,13 +9,32 @@ const rarities = ["common", "uncommon", "rare", "mythic"];
 
 const Search = () => {
 
+    const [name, setName] = useState("");
+    const mtg = require('mtgsdk');
+
+    
+
+    const fetchCards = async () => {
+        mtg.card.find(3)
+        .then(result => {
+            console.log(result.card.name) // "Black Lotus"
+        })    }
+
     return(
         <div className="center">
-            <form className="search-box">
+            <form 
+            className="search-box"
+            onSubmit={(e) => {
+                e.preventDefault();
+                fetchCards();
+            }}
+            >
                 <label htmlFor="cardName">
                     Name 
                     <input 
                     id="cardName"
+                    placeholder="Name"
+                    onChange={(change)=> setName(change.target.value)}
                     />
                 </label>
                 <label htmlFor="color">
@@ -55,6 +74,7 @@ const Search = () => {
                         
                     </select>
                 </label>
+                <button>Submit</button>
             </form>
         </div>
     )
