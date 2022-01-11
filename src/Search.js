@@ -1,5 +1,7 @@
 import { useState } from "react";
+import Result from "./Result";
 import "./style/search.css"
+
 
 
 
@@ -10,15 +12,20 @@ const rarities = ["common", "uncommon", "rare", "mythic"];
 const Search = () => {
 
     const [name, setName] = useState("");
+    const [color, setColor] = useState("");
+    const [type, setType] = useState("");
+    const [rarity, setRarity] = useState("");
+    const [cards, setCards] = useState("");
     const mtg = require('mtgsdk');
 
     
 
-    const fetchCards = async () => {
-        mtg.card.find(3)
-        .then(result => {
-            console.log(result.card.name) // "Black Lotus"
-        })    }
+    const fetchCards = async (name, color, type, rarity) => {
+        mtg.card.where({name: name, colors: color, types: type, rarity: rarity})
+            .then(cards => {
+                setCards(cards);
+        })
+    }
 
     return(
         <div className="center">
@@ -26,7 +33,7 @@ const Search = () => {
             className="search-box"
             onSubmit={(e) => {
                 e.preventDefault();
-                fetchCards();
+                fetchCards(name, color, type, rarity);
             }}
             >
                 <label htmlFor="cardName">
@@ -40,7 +47,8 @@ const Search = () => {
                 <label htmlFor="color">
                     Color
                     <select
-                    id="color"
+                        id="color"
+                        onChange={(change)=> setColor(change.target.value)}
                     >
                             {colors.map((color) => (
                                 <option value={color} key={color}>
@@ -52,10 +60,11 @@ const Search = () => {
                 <label htmlFor="type">
                     Type
                     <select
-                    id="type"
+                        id="type"
+                        onChange={(change)=> setType(change.target.value)}
                     >
                         {types.map((type) => (
-                            <option>
+                            <option value={type} key={type}>
                                 {type}
                             </option>
                         ))}
@@ -64,10 +73,11 @@ const Search = () => {
                 <label htmlFor="rarity">
                     Rarity
                     <select 
-                    id="rarity"
+                        id="rarity"
+                        onChange={(change)=> setRarity(change.target.value)}
                     >
                         {rarities.map((rarity) => (
-                            <option>
+                            <option value={rarity} key={rarity}>
                                 {rarity}
                             </option>
                         ))}
@@ -76,6 +86,7 @@ const Search = () => {
                 </label>
                 <button>Submit</button>
             </form>
+            <Result cards={cards} />
         </div>
     )
 }

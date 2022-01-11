@@ -5,6 +5,7 @@ label, input, select {
 .center {
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 .search-box {
     display: flex;
