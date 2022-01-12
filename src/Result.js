@@ -1,5 +1,6 @@
 import Card from "./Card";
 
+
 const Result = ({ cards }) => {
     return (
          (!cards.length) ? 

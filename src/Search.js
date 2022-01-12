@@ -86,7 +86,9 @@ const Search = () => {
                 </label>
                 <button>Submit</button>
             </form>
-            <Result cards={cards} />
+            <div>
+                <Result cards={cards} />
+            </div>
         </div>
     )
 }

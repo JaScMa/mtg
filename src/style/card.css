@@ -1,0 +1,19 @@
+.card {
+    display: flex;
+    flex-direction: row;
+    margin: 30px auto;
+    border: 1px solid black;
+}
+.card-picture{
+    height: 210px;
+    width: 260px;
+    overflow: hidden;
+}
+.card-picture img {
+    object-fit: contain;
+    max-width: 100%;
+}
+.card-text {
+    width: 400px;
+    text-align: center;
+}
