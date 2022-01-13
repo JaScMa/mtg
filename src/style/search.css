@@ -14,8 +14,9 @@ label, input, select {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background-color: black;
+    background-color: rgb(89, 91, 95);
     border-radius: 30px;
+    filter: drop-shadow(5px 10px 1px rgb(19, 19, 19));
 }
 button {
     background-color: blue;
