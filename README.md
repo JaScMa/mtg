@@ -3,26 +3,11 @@
 ## Setup
 
 Because Webpack5 no longer includes polyfills. 
-Go to node_modules/react-scripts/config/webpack.config.js
+Install the following 
 
-### const NodePolyfillPlugin = require("node-polyfill-webpack-plugin"); 
-### ...
-### ...
-### module.exports = {
-###     return {
-###         resolve: {
-###             fallback: {
-###                 "fs": false,
-###                 "tls": false,
-###             },
-###         }
-###     }
-###    // Other rules...
-###    plugins: [
-###        new NodePolyfillPlugin()
-###    ]
-### }
-
-
-
-
+### npm i assert
+### npm i https-browserify
+### npm i os
+### npm i os-broserify
+### npm i react-app-rewired
+### npm i react-zlib-js
