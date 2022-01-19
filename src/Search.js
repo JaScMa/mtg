@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Result from "./Result";
+import Spinner from "./Spinner";
 import "./style/search.css"
 
 
@@ -16,6 +17,7 @@ const Search = () => {
     const [type, setType] = useState("");
     const [rarity, setRarity] = useState("");
     const [cards, setCards] = useState("");
+    const [state, setState] = useState("notLoaded");
     const mtg = require('mtgsdk');
 
     
@@ -24,7 +26,19 @@ const Search = () => {
         mtg.card.where({name: name, colors: color, types: type, rarity: rarity})
             .then(cards => {
                 setCards(cards);
+                setState("loaded");
         })
+    }
+
+    const loadingState = (state) => {
+        switch (state) {
+            case "loaded": 
+                return (< Result cards = { cards } />);
+            case "loading":
+                return (<Spinner/>);
+            default: 
+                return (<div></div>)
+        }
     }
 
     return(
@@ -33,7 +47,8 @@ const Search = () => {
             className="search-box"
             onSubmit={(e) => {
                 e.preventDefault();
-                fetchCards(name, color, type, rarity);
+                setState("loading");
+                fetchCards(name, color, type, rarity)
             }}
             >
                 <label htmlFor="cardName">
@@ -87,7 +102,7 @@ const Search = () => {
                 <button>Submit</button>
             </form>
             <div>
-                <Result cards={cards} />
+                {loadingState(state)}
             </div>
         </div>
     )
