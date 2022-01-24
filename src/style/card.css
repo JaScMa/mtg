@@ -17,7 +17,6 @@
 
 }
 .card-picture img {
-    object-fit: contain;
     border-radius: 9px;
 }
 .card-text {

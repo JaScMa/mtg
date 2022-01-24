@@ -2,6 +2,8 @@ import { useState } from "react";
 import Result from "./Result";
 import Spinner from "./Spinner";
 import "./style/search.css"
+import searchImg from "./img/search.png"
+
 
 
 
@@ -99,7 +101,12 @@ const Search = () => {
                         
                     </select>
                 </label>
-                <button>Submit</button>
+                <button>
+                    <object data={searchImg}/>
+                    <p>
+                    Submit
+                    </p>
+                </button>
             </form>
             <div>
                 {loadingState(state)}
