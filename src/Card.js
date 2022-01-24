@@ -1,4 +1,4 @@
-import defaultPicture from "./mtg-card-default.jpg"
+import defaultPicture from "./img/card-background.jpeg"
 import "./style/card.css"
 
 const Card = ({ card }) => {
@@ -6,11 +6,11 @@ const Card = ({ card }) => {
     console.log(card.imageUrl);
     console.log(img);
     return (
-        <div class="card">
-            <div class="card-picture">
-                <img src={img} alt="artwork"></img>
+        <div className="card">
+            <div className="card-picture">
+                <img className="card-img" src={img} alt="artwork"></img>
             </div>
-            <div class="card-text"> 
+            <div className="card-text"> 
                 <h1>{card.name}</h1>
                 <p>{card.text}</p>
             </div>

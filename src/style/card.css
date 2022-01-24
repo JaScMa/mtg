@@ -7,17 +7,21 @@
     border-radius:  30px;
     filter: drop-shadow(8px 8px 1px rgb(19, 19, 19));
     overflow: hidden;
+    padding: 10px;
+    width: 800px;
+    height: 180px;
 }
-.card-picture{
-    height: 210px;
-    width: 260px;
-    overflow: hidden;
+.card-img{
+    object-fit: fit;
+    height: 100%;
+
 }
 .card-picture img {
     object-fit: contain;
-    max-width: 100%;
+    border-radius: 9px;
 }
 .card-text {
-    width: 400px;
+    width: 100%;
     text-align: center;
+    padding: 0 10%;
 }
