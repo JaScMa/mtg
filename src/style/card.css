@@ -30,11 +30,10 @@
     text-align: center;
     font-size: 1vw;
     padding: 0 20px;
+    overflow: scroll;
 }
 .card-text h1, p {
     margin: 10px auto 20px;
-    overflow: scroll;
-
 }
 @media only screen and (max-width: 768px) {
     .card-text {
