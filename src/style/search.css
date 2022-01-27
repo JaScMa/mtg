@@ -10,7 +10,7 @@ input, select {
 label {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 80%;
 }
 .center {
     display: flex;
@@ -19,28 +19,41 @@ label {
     flex-direction: column;
 }
 .search-box {
-    margin-top: 50px;
-    width: 800px;
+    margin: 50px auto 0;
+    width: 80%;
+    max-width: 800px;
+    padding: 20px;
     display: flex;
     align-items: center;
     flex-direction: column;
     background-color: rgb(89, 91, 95);
     border-radius: 30px;
     filter: drop-shadow(5px 10px 1px rgb(19, 19, 19));
+    border: none;
+}
+@media only screen and (max-width: 768px) {
+    .search-box{
+        filter: none;
+    }
 }
 button {
     background-color: blue;
     font-size: 30px;
-    width : 33%;
+    width : 60%;
     height: 50px;
     margin: 10px auto;
     border-radius: 10px;
     color: white;
-    margin-top: 50px;
+    margin: 20px auto;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+}
+@media only screen and (min-width: 768px) {
+    button {
+        width: 33%;
+    }
 }
 button object {
     object-fit: fit;

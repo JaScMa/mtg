@@ -8,13 +8,19 @@
     filter: drop-shadow(8px 8px 1px rgb(19, 19, 19));
     overflow: hidden;
     padding: 10px;
-    width: 800px;
+    width: 80%;
+    max-width: 1200px;
     height: 180px;
+    border: none;
+}
+@media only screen and (max-width: 768px) {
+    .card{
+        filter: none;
+    }
 }
 .card-img{
     object-fit: fit;
     height: 100%;
-
 }
 .card-picture img {
     border-radius: 9px;
@@ -22,5 +28,19 @@
 .card-text {
     width: 100%;
     text-align: center;
-    padding: 0 10%;
+    font-size: 1vw;
+    padding: 0 20px;
+}
+.card-text h1, p {
+    margin: 10px auto 20px;
+    overflow: scroll;
+
+}
+@media only screen and (max-width: 768px) {
+    .card-text {
+        font-size: 2.5vw;
+    }
+    .card-text h1, p {
+        margin: 5px auto 10px;
+    }
 }
