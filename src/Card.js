@@ -2,7 +2,7 @@ import defaultPicture from "./img/card-background.jpeg"
 import "./style/card.css"
 
 const Card = ({ card }) => {
-    const img = card.imageUrl || defaultPicture ;
+    const img = card.imageUrl || defaultPicture ;
     console.log(card.imageUrl);
     console.log(img);
     return (
