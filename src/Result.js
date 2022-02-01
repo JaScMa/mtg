@@ -7,7 +7,6 @@ const Result = ({ cards }) => {
             <h1>Sorry, we couldn't find any matching cards</h1> :
             (
                 cards.map(card => (
-
                     <Card card={card} />
                 ))
             )

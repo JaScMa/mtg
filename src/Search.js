@@ -102,9 +102,8 @@ const Search = () => {
                     </select>
                 </label>
                 <button>
-                    <object data={searchImg}/>
                     <p>
-                    Submit
+                    Search
                     </p>
                 </button>
             </form>
