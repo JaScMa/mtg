@@ -16,19 +16,21 @@ const Card = ({ card }) => {
         onMouseLeave ={() => setHovered(false)}
         >
             <div className="card-picture">
-                <img className="card-img" src={img} alt="artwork"></img>
+                <img className="card-img" src={img} alt="artwork">
+                    
+                </img>
                 { (img === defaultPicture || hovered) &&
-                    <div className="overlay-text">
+                    <div className="overlay-text overlay">
+                        <div className="overlay">
+
                         <h1>{card.name}</h1>
                         <p>{card.text}</p>
+                        </div>
                     </div> 
                 }
         
             </div>
-            {/* <div className="card-text"> 
-                <h1>{card.name}</h1>
-                <p>{card.text}</p>
-            </div> */}
+
         </div>
     )
 }
