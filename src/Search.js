@@ -102,9 +102,7 @@ const Search = () => {
                     </select>
                 </label>
                 <button>
-                    <p>
                     Search
-                    </p>
                 </button>
             </form>
             <div>
