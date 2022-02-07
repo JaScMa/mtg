@@ -4,7 +4,7 @@
     appearance: none;
 }
 label, input, select {
-    margin: 6px 12px;
+    margin: 10px auto;
     font-size: 28px;
     text-align: center;
 }
@@ -13,9 +13,7 @@ input, select {
     border-radius: 10px;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
 }
-label {
-    flex-direction: row;
-}
+
 .center {
     display: flex;
     align-items: center;
@@ -24,7 +22,6 @@ label {
 }
 .search-box {
     display: flex;
-    justify-content: center;
     flex-direction: column;
     margin: 80px auto 0;
     width: 80%;
@@ -34,6 +31,7 @@ label {
     border-radius: 30px;
     filter: drop-shadow(5px 10px 1px rgb(19, 19, 19));
     border: none;
+    text-align: center;
 }
 @media only screen and (max-width: 768px) {
     .search-box{
