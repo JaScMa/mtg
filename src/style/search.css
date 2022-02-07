@@ -1,20 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+
 *{
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    font-family: "Poppins", Helvetica, sans-serif;
 }
-label, input, select {
+input, select {
     margin: 10px auto;
     font-size: 28px;
     text-align: center;
-}
-input, select {
+    color: black;
     width: 33%;
     border-radius: 10px;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
 }
+h1{
+    font-size: 20px;
+    font-weight: bolder;
+}
 
-.center {
+.center {  
     display: flex;
     align-items: center;
     justify-content: center;

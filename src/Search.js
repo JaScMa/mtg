@@ -64,8 +64,9 @@ const Search = () => {
                     <select
                         id="color"
                         onChange={(change)=> setColor(change.target.value)}
-                    >
-                        <option value="">Color</option>
+                        style={{color : (color === "")? "grey" : "black"}}
+                        >
+                        <option value="" key="">Color</option>
                             {colors.map((color) => (
                                 <option value={color} key={color}>
                                     {color}
@@ -76,8 +77,9 @@ const Search = () => {
                     <select
                         id="type"
                         onChange={(change)=> setType(change.target.value)}
-                    >
-                        <option value={""}>Type</option>
+                        style={{color : (type === "")? "grey" : "black"}}
+                        >
+                        <option value="">Type</option>
                         {types.map((type) => (
                             <option value={type} key={type}>
                                 {type}
@@ -88,8 +90,9 @@ const Search = () => {
                     <select 
                         id="rarity"
                         onChange={(change)=> setRarity(change.target.value)}
-                    >   
-                        <option value={""}>Rarity</option>
+                        style={{color : (rarity === "")? "grey" : "black"}}
+                        >   
+                        <option value="" key="">Rarity</option>
                         {rarities.map((rarity) => (
                             <option value={rarity} key={rarity}>
                                 {rarity}

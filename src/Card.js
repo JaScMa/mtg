@@ -2,6 +2,7 @@ import defaultPicture from "./img/card-background.jpeg"
 import "./style/card.css"
 import { useState } from "react";
 
+
 const Card = ({ card }) => {
     const img = card.imageUrl || defaultPicture ;
     const [hovered, setHovered] = useState(false);
