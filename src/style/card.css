@@ -1,36 +1,18 @@
-.card {
-   
 
-    display: flex;
-    flex-direction: row;
-    margin: 50px auto;
-    border: 1px solid black;
-    filter: drop-shadow(8px 8px 1px rgb(19, 19, 19));
-    overflow: hidden;
-    max-width: 1200px;
-    height: 250px;
-    width: 180px;
-    border: none;
-    filter: none;
-}
 
 .card-picture {
+    position: relative;
     height: 100%;
     display: flex;
     justify-content: center;
 }
 .card-img{
-    position: relative;
     border-radius: 9px;
-    object-fit: fit;
     height: 100%;
 
 }
-.overlay{
-    
-}
+
 .overlay-text {
-    box-sizing: border-box;
     position: absolute;
     border-radius: 9px;
     z-index: 100;
@@ -38,8 +20,8 @@
     padding: 15px;
     flex-wrap: wrap;
     text-align: center;
-    height: 250px;
-    width: 180px;
+    height: 100%;
+
     display: flex;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.342);

@@ -1,5 +1,5 @@
-import defaultPicture from "./img/card-background.jpeg"
-import "./style/card.css"
+import defaultPicture from "./img/card-background.jpeg";
+import "./style/card.css";
 import { useState } from "react";
 
 
@@ -12,7 +12,7 @@ const Card = ({ card }) => {
    
 
     return (
-        <div className="card"
+        <div className="my-10"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave ={() => setHovered(false)}
         >
@@ -21,7 +21,7 @@ const Card = ({ card }) => {
                     
                 </img>
                 { (img === defaultPicture || hovered) &&
-                    <div className="overlay-text overlay">
+                    <div className="overlay-text">
                         <div className="overlay">
 
                         <h1>{card.name}</h1>

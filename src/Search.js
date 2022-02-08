@@ -2,7 +2,7 @@ import { useState } from "react";
 import Result from "./Result";
 import Spinner from "./Spinner";
 import "./style/search.css"
-import searchImg from "./img/search.png"
+
 
 
 
@@ -46,7 +46,7 @@ const Search = () => {
     return(
         <div className="center">
             <form 
-            className="search-box"
+            className="search-box bg-gradient-to-t from-purple-400 to-red-500"
             onSubmit={(e) => {
                 e.preventDefault();
                 setState("loading");
