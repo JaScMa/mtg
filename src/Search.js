@@ -46,7 +46,7 @@ const Search = () => {
     return(
         <div className="center">
             <form 
-            className="search-box bg-gradient-to-t from-purple-400 to-red-500"
+            className="search-box shadow-xl bg-gradient-to-t from-blueishGreen via-lightPurple to-darkPurple"
             onSubmit={(e) => {
                 e.preventDefault();
                 setState("loading");
@@ -64,7 +64,7 @@ const Search = () => {
                     <select
                         id="color"
                         onChange={(change)=> setColor(change.target.value)}
-                        style={{color : (color === "")? "grey" : "black"}}
+                        style={{color : (color === "")? "#9da4b0" : "black"}}
                         >
                         <option value="" key="">Color</option>
                             {colors.map((color) => (
@@ -77,7 +77,7 @@ const Search = () => {
                     <select
                         id="type"
                         onChange={(change)=> setType(change.target.value)}
-                        style={{color : (type === "")? "grey" : "black"}}
+                        style={{color : (type === "")? "#9da4b0" : "black"}}
                         >
                         <option value="">Type</option>
                         {types.map((type) => (
@@ -90,7 +90,7 @@ const Search = () => {
                     <select 
                         id="rarity"
                         onChange={(change)=> setRarity(change.target.value)}
-                        style={{color : (rarity === "")? "grey" : "black"}}
+                        style={{color : (rarity === "")? "#9da4b0" : "black"}}
                         >   
                         <option value="" key="">Rarity</option>
                         {rarities.map((rarity) => (
@@ -100,7 +100,7 @@ const Search = () => {
                         ))}
                         
                     </select>
-                <button>
+                <button className="hover:brightness-110 shadow-lg bg-gradient-to-b from-burningRed to-deepBlue">
                     Search
                 </button>
             </form>

@@ -35,7 +35,7 @@ h1{
     padding: 20px;
     background-color: rgb(89, 91, 95);
     border-radius: 30px;
-    filter: drop-shadow(5px 10px 1px rgb(19, 19, 19));
+
     border: none;
     text-align: center;
 }
@@ -45,7 +45,6 @@ h1{
     }
 }
 button {
-    background-color: blue;
     font-size: 30px;
     width : 66%;
     height: 50px;

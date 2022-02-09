@@ -12,7 +12,7 @@ const Card = ({ card }) => {
    
 
     return (
-        <div className="my-10"
+        <div className="my-10 shadow-xl"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave ={() => setHovered(false)}
         >
@@ -22,10 +22,10 @@ const Card = ({ card }) => {
                 </img>
                 { (img === defaultPicture || hovered) &&
                     <div className="overlay-text">
-                        <div className="overlay">
+                        <div>
 
                         <h1>{card.name}</h1>
-                        <p>{card.text}</p>
+                        <p>{card.manaCost}</p>
                         </div>
                     </div> 
                 }
