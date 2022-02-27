@@ -2,7 +2,11 @@ import { useState } from "react";
 import Result from "./Result";
 import Spinner from "./Spinner";
 import "./style/search.css"
-import { ReactComponent as White } from "./img/mtg-white.svg";
+import { ReactComponent as White} from "./img/mtg-white.svg";
+import { ReactComponent as Green } from "./img/mtg-green.svg";
+import { ReactComponent as Blue } from "./img/mtg-blue.svg";
+import { ReactComponent as Black } from "./img/mtg-black.svg";
+import { ReactComponent as Red } from "./img/mtg-red.svg";
 
 
 
@@ -22,7 +26,6 @@ const Search = () => {
     const [cards, setCards] = useState("");
     const [state, setState] = useState("notLoaded");
     const mtg = require('mtgsdk');
-
     
 
     const fetchCards = async (name, color, type, rarity) => {
@@ -63,19 +66,6 @@ const Search = () => {
                     />
 
                     <select
-                        id="color"
-                        onChange={(change)=> setColor(change.target.value)}
-                        style={{color : (color === "")? "#9da4b0" : "black"}}
-                        >
-                        <option value="" key="">Color</option>
-                            {colors.map((color) => (
-                                <option value={color} key={color}>
-                                    {color}
-                                </option>
-                            ))}
-                    </select>
-
-                    <select
                         id="type"
                         onChange={(change)=> setType(change.target.value)}
                         style={{color : (type === "")? "#9da4b0" : "black"}}
@@ -101,11 +91,33 @@ const Search = () => {
                         ))}
                         
                     </select>
-                    <div className="flex row-auto">
-                            <button>
-                                <White />
-                            </button>
-
+                    <div className="flex justify-around flex-row p-3">
+                            <White 
+                            alt="white"
+                            className={((color=="white") ? "fill-white" : "fill-stone-500")}
+                            onClick={() => (setColor((color == "white") ? "" : "white"))}
+                            />
+                            <Red 
+                            alt="red"
+                            className={(color=="red") ? "fill-red-800" : "fill-stone-500"}
+                            onClick={() => (setColor((color == "red") ? "" : "red"))}
+                            />
+                            <Blue 
+                            alt="blue"
+                            className={(color=="blue") ? "fill-blue-600" : "fill-stone-500"}
+                            onClick={() => (setColor((color == "blue") ? "" : "blue"))}
+                            />
+                            <Green 
+                            alt="green"
+                            className={(color=="green") ? "fill-green-900" : "fill-stone-500"}
+                            onClick={() => (setColor((color == "green") ? "" : "green"))}
+                            />
+                            <Black 
+                            alt="black"
+                            className={(color=="black") ? "fill-black" : "fill-stone-500"}
+                            onClick={() => (setColor((color == "black") ? "" : "black"))}
+                            />
+                           
                     </div>
                 <button className="hover:brightness-110 shadow-lg bg-gradient-to-b from-burningRed to-deepBlue">
                     Search
