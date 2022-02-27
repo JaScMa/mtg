@@ -2,6 +2,7 @@ import { useState } from "react";
 import Result from "./Result";
 import Spinner from "./Spinner";
 import "./style/search.css"
+import { ReactComponent as White } from "./img/mtg-white.svg";
 
 
 
@@ -100,6 +101,12 @@ const Search = () => {
                         ))}
                         
                     </select>
+                    <div className="flex row-auto">
+                            <button>
+                                <White />
+                            </button>
+
+                    </div>
                 <button className="hover:brightness-110 shadow-lg bg-gradient-to-b from-burningRed to-deepBlue">
                     Search
                 </button>
