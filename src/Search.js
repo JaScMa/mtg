@@ -9,11 +9,6 @@ import { ReactComponent as Black } from "./img/mtg-black.svg";
 import { ReactComponent as Red } from "./img/mtg-red.svg";
 
 
-
-
-
-
-const colors = ["colorless", "blue", "green", "red", "black", "white"];
 const types = ["land", "creature", "artifact", "enchantment", "planeswalker", "instant", "sorcery"];
 const rarities = ["common", "uncommon", "rare", "mythic"];
 
@@ -94,28 +89,28 @@ const Search = () => {
                     <div className="flex justify-around flex-row p-3">
                             <White 
                             alt="white"
-                            className={((color=="white") ? "fill-white" : "fill-stone-500")}
-                            onClick={() => (setColor((color == "white") ? "" : "white"))}
+                            className={((color==="white") ? "fill-white" : "fill-stone-500")}
+                            onClick={() => (setColor((color === "white") ? "" : "white"))}
                             />
                             <Red 
                             alt="red"
-                            className={(color=="red") ? "fill-red-800" : "fill-stone-500"}
-                            onClick={() => (setColor((color == "red") ? "" : "red"))}
+                            className={(color==="red") ? "fill-red-800" : "fill-stone-500"}
+                            onClick={() => (setColor((color === "red") ? "" : "red"))}
                             />
                             <Blue 
                             alt="blue"
-                            className={(color=="blue") ? "fill-blue-600" : "fill-stone-500"}
-                            onClick={() => (setColor((color == "blue") ? "" : "blue"))}
+                            className={(color==="blue") ? "fill-blue-600" : "fill-stone-500"}
+                            onClick={() => (setColor((color === "blue") ? "" : "blue"))}
                             />
                             <Green 
                             alt="green"
-                            className={(color=="green") ? "fill-green-900" : "fill-stone-500"}
-                            onClick={() => (setColor((color == "green") ? "" : "green"))}
+                            className={(color==="green") ? "fill-green-900" : "fill-stone-500"}
+                            onClick={() => (setColor((color === "green") ? "" : "green"))}
                             />
                             <Black 
                             alt="black"
-                            className={(color=="black") ? "fill-black" : "fill-stone-500"}
-                            onClick={() => (setColor((color == "black") ? "" : "black"))}
+                            className={(color==="black") ? "fill-black" : "fill-stone-500"}
+                            onClick={() => (setColor((color === "black") ? "" : "black"))}
                             />
                            
                     </div>
