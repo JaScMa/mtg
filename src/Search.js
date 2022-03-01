@@ -21,20 +21,38 @@ const Search = () => {
     const [cards, setCards] = useState("");
     const [state, setState] = useState("notLoaded");
     const mtg = require('mtgsdk');
-    
+    const [page, setPage] = useState(1);
 
-    const fetchCards = async (name, color, type, rarity) => {
-        mtg.card.where({name: name, colors: color, types: type, rarity: rarity})
-            .then(cards => {
-                setCards(cards);
+    const fetchCards = async (name, color, type, rarity, page) => {
+        const url = `https://api.magicthegathering.io/v1/cards?name=${name}&colors=${color}&types=${type}&rarity=${rarity}&page=${page}`;
+        fetch(url)
+            .then(response=>{
+                    console.log(response.headers.get("total-count"));
+                    return response.json();
+                })
+            .then(data => {
+                console.log(data.cards);
+                setCards(data.cards);
                 setState("loaded");
-        })
+            })
     }
+
 
     const loadingState = (state) => {
         switch (state) {
             case "loaded": 
-                return (< Result cards = { cards } />);
+                return (
+                    <div>
+                        < Result cards = { cards } />
+                        <div className="flex justify-center">
+                            <p className="cursor-pointer" onClick={() => {
+                                setPage(page+1);
+                                fetchCards(name, color, type, rarity, page+1);
+                                setState("loading");
+                                }}>Next</p>
+                        </div>
+                    </div>
+                );
             case "loading":
                 return (<Spinner/>);
             default: 
@@ -48,8 +66,9 @@ const Search = () => {
             className="search-box shadow-xl bg-gradient-to-t from-blueishGreen via-lightPurple to-darkPurple"
             onSubmit={(e) => {
                 e.preventDefault();
+                setPage(1);
+                fetchCards(name, color, type, rarity, 1);
                 setState("loading");
-                fetchCards(name, color, type, rarity)
             }}
             >
 
