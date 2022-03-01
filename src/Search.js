@@ -24,7 +24,8 @@ const Search = () => {
     const [page, setPage] = useState(1);
 
     const fetchCards = async (name, color, type, rarity, page) => {
-        const url = `https://api.magicthegathering.io/v1/cards?name=${name}&colors=${color}&types=${type}&rarity=${rarity}&page=${page}`;
+        const url = `https://api.magicthegathering.io/v1/cards?name=${name}&colors=${color}&types=${type}&rarity=${rarity}&page=${page}&pageSize=50`;
+        console.log(url);
         fetch(url)
             .then(response=>{
                     console.log(response.headers.get("total-count"));
@@ -108,28 +109,28 @@ const Search = () => {
                     <div className="flex justify-around flex-row p-3">
                             <White 
                             alt="white"
-                            className={((color==="white") ? "fill-white" : "fill-stone-500")}
-                            onClick={() => (setColor((color === "white") ? "" : "white"))}
+                            className={((color.includes("white,")) ? "fill-white" : "fill-stone-500")}
+                            onClick={() => (setColor((color.includes( "white,")) ? color.replace("white,", "") : color.concat("white,")))}
                             />
                             <Red 
                             alt="red"
-                            className={(color==="red") ? "fill-red-800" : "fill-stone-500"}
-                            onClick={() => (setColor((color === "red") ? "" : "red"))}
+                            className={(color.includes("red,")) ? "fill-red-800" : "fill-stone-500"}
+                            onClick={() => (setColor((color.includes( "red,")) ? color.replace("red,", "") : color.concat("red,")))}
                             />
                             <Blue 
                             alt="blue"
-                            className={(color==="blue") ? "fill-blue-600" : "fill-stone-500"}
-                            onClick={() => (setColor((color === "blue") ? "" : "blue"))}
+                            className={(color.includes("blue,")) ? "fill-blue-600" : "fill-stone-500"}
+                            onClick={() => (setColor((color.includes( "blue,")) ? color.replace("blue,", "") : color.concat("blue,")))}
                             />
                             <Green 
                             alt="green"
-                            className={(color==="green") ? "fill-green-900" : "fill-stone-500"}
-                            onClick={() => (setColor((color === "green") ? "" : "green"))}
+                            className={(color.includes("green,")) ? "fill-green-900" : "fill-stone-500"}
+                            onClick={() => (setColor((color.includes( "green,")) ? color.replace("green,", "") : color.concat("green,")))}
                             />
                             <Black 
                             alt="black"
-                            className={(color==="black") ? "fill-black" : "fill-stone-500"}
-                            onClick={() => (setColor((color === "black") ? "" : "black"))}
+                            className={(color.includes("black,")) ? "fill-black" : "fill-stone-500"}
+                            onClick={() => (setColor((color.includes( "black,")) ? color.replace("black,", "") : color.concat("black,")))}
                             />
                            
                     </div>
