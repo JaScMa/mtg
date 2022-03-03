@@ -1,6 +1,6 @@
 import Search from "./Search";
 import Details from "./Details";
-import {BrowserRouter, Route, Switch, Link, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Link, Routes} from "react-router-dom";
 
 const App = () => {
   return (
@@ -11,8 +11,8 @@ const App = () => {
 				</header>
 				<main>
 					<Routes>
+						<Route path="/Details/:id" element={<Details />} />
 						<Route path="/" element={<Search />} />
-            <Route path=":id" element={<Details />} />
 					</Routes>
 				</main>
 			</div>

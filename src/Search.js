@@ -20,13 +20,12 @@ const Search = () => {
     const [rarity, setRarity] = useState("");
     const [cards, setCards] = useState("");
     const [state, setState] = useState("notLoaded");
-    const mtg = require('mtgsdk');
     const [page, setPage] = useState(1);
     const [maxPage, setMaxPage] = useState(0);
     const pageSize = 50;
 
 
-    const fetchCards = async (name, color, type, rarity, page) => {
+    const fetchCards = async (page) => {
         setState("loading");
         setPage(page);
         const url = `https://api.magicthegathering.io/v1/cards?name=${name}&colors=${color}&types=${type}&rarity=${rarity}&page=${page}&pageSize=${pageSize}`;
@@ -36,7 +35,6 @@ const Search = () => {
                     return response.json();
                 })
             .then(data => {
-                console.log(data.cards);
                 setCards(data.cards);
                 setState("loaded");
             })
@@ -51,13 +49,13 @@ const Search = () => {
                         < Result cards = { cards } />
                         <div className="flex justify-center">
                             {(page > 1) && <p className="cursor-pointer" onClick={() => {
-                                fetchCards(name, color, type, rarity, page-1);
+                                fetchCards(page-1);
                                 }}>Prev</p>}
                             <p>
                                 {page} of {maxPage}
                             </p>
                             {(page < maxPage) && <p className="cursor-pointer" onClick={() => {
-                                fetchCards(name, color, type, rarity, page+1);
+                                fetchCards(page+1);
                                 }}>Next</p>}
                         </div>
                     </div>
@@ -76,7 +74,7 @@ const Search = () => {
             onSubmit={(e) => {
                 e.preventDefault();
                 setPage(1);
-                fetchCards(name, color, type, rarity, 1);
+                fetchCards(1);
                 setState("loading");
             }}
             >

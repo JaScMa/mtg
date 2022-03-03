@@ -18,26 +18,25 @@ const Card = ({ card }) => {
 	
 
 	const insertMana = (str) => {
-
 		str = str.replace(/{/g, "");
 		str = str.replace(/}/g, "");
 		const manaCost = str.split(""); 
 		return(
 
-			manaCost.map(mana => {
+			manaCost.map((mana, i) => {
 				switch(mana) {
 					case "W": 
-						return <White alt="w" className="fill-white m-1" width="20pt" height="20pt" fill="blue"/>;
+						return <White key={i} alt="w" className="fill-white m-1" width="20pt" height="20pt" fill="blue"/>;
 					case "B": 
-						return <Black alt="w" className="fill-black m-1" width="20pt" height="20pt"/>;
+						return <Black key={i} alt="w" className="fill-black m-1" width="20pt" height="20pt"/>;
 					case "R": 
-						return <Red alt="w" className="fill-red-800 m-1" width="20pt" height="20pt"/>;
+						return <Red key={i} alt="w" className="fill-red-800 m-1" width="20pt" height="20pt"/>;
 					case "U": 
-						return <Blue alt="w" className="fill-blue-600 m-1" width="20pt" height="20pt"/>;
+						return <Blue key={i} alt="w" className="fill-blue-600 m-1" width="20pt" height="20pt"/>;
 					case "G": 
-						return <Green alt="w" className="fill-green-900 m-1" width="20pt" height="20pt"/>;
+						return <Green key={i} alt="w" className="fill-green-900 m-1" width="20pt" height="20pt"/>;
 					default: 
-					 return <p className="text-xl m-1">{mana}</p>
+					 return <p key={i} className="text-xl m-1">{mana}</p>
 				}
 	
 			})
@@ -48,7 +47,7 @@ const Card = ({ card }) => {
    
 
     return (
-			<Link to={card.id}>
+			<Link to={"/Details/" + card.id}>
 				<div
 					className="my-10 shadow-xl"
 					onMouseEnter={() => setHovered(true)}
