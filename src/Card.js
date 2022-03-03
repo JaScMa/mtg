@@ -18,6 +18,7 @@ const Card = ({ card }) => {
 	
 
 	const insertMana = (str) => {
+
 		str = str.replace(/{/g, "");
 		str = str.replace(/}/g, "");
 		const manaCost = str.split(""); 
@@ -41,6 +42,7 @@ const Card = ({ card }) => {
 	
 			})
 		)
+	
 			
 	}
    
@@ -58,8 +60,8 @@ const Card = ({ card }) => {
 							<div className="overlay-text">
 								<div className="">
 									<h1>{card.name}</h1>
-									<div  className=" flex flex-row justify-center"> 
-										{insertMana(card.manaCost)}
+									<div className=" flex flex-row justify-center">
+										{(!card.manaCost) ? "" : insertMana(card.manaCost)}
 									</div>
 								</div>
 							</div>

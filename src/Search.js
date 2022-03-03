@@ -22,13 +22,17 @@ const Search = () => {
     const [state, setState] = useState("notLoaded");
     const mtg = require('mtgsdk');
     const [page, setPage] = useState(1);
+    const [maxPage, setMaxPage] = useState(0);
+    const pageSize = 50;
+
 
     const fetchCards = async (name, color, type, rarity, page) => {
-        const url = `https://api.magicthegathering.io/v1/cards?name=${name}&colors=${color}&types=${type}&rarity=${rarity}&page=${page}&pageSize=50`;
-        console.log(url);
+        setState("loading");
+        setPage(page);
+        const url = `https://api.magicthegathering.io/v1/cards?name=${name}&colors=${color}&types=${type}&rarity=${rarity}&page=${page}&pageSize=${pageSize}`;
         fetch(url)
             .then(response=>{
-                    console.log(response.headers.get("total-count"));
+                    setMaxPage(Math.ceil(response.headers.get("total-count")/pageSize));
                     return response.json();
                 })
             .then(data => {
@@ -46,11 +50,15 @@ const Search = () => {
                     <div>
                         < Result cards = { cards } />
                         <div className="flex justify-center">
-                            <p className="cursor-pointer" onClick={() => {
-                                setPage(page+1);
+                            {(page > 1) && <p className="cursor-pointer" onClick={() => {
+                                fetchCards(name, color, type, rarity, page-1);
+                                }}>Prev</p>}
+                            <p>
+                                {page} of {maxPage}
+                            </p>
+                            {(page < maxPage) && <p className="cursor-pointer" onClick={() => {
                                 fetchCards(name, color, type, rarity, page+1);
-                                setState("loading");
-                                }}>Next</p>
+                                }}>Next</p>}
                         </div>
                     </div>
                 );
