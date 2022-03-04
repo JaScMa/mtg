@@ -45,21 +45,43 @@ const Search = () => {
         switch (state) {
             case "loaded": 
                 return (
-                    <div>
-                        < Result cards = { cards } />
-                        <div className="flex justify-center">
-                            {(page > 1) && <p className="cursor-pointer" onClick={() => {
-                                fetchCards(page-1);
-                                }}>Prev</p>}
-                            <p>
-                                {page} of {maxPage}
-                            </p>
-                            {(page < maxPage) && <p className="cursor-pointer" onClick={() => {
-                                fetchCards(page+1);
-                                }}>Next</p>}
-                        </div>
-                    </div>
-                );
+									<div>
+										< Result cards = { cards } />
+										<div className="flex flex-row p-5">
+											{page > 1 && (
+												<p
+													className="cursor-pointer m-2 font-bold text-3xl self-center"
+													onClick={() => {
+														fetchCards(page - 1);
+													}}
+												>
+													Prev
+												</p>
+											)}
+											<div className="text-center">
+                                                <input onChange={change => {setPage((change.target.value > maxPage) ? maxPage : change.target.value)}} onSubmit={e => {fetchCards(page)}}
+                                                type="number"
+                                                 value={page}
+                                                 min={1}
+                                                 step="1"
+                                                 />
+												<p>
+                                                    of {maxPage}
+												</p>
+											</div>
+											{page < maxPage && (
+												<p
+													className="cursor-pointer  m-2 font-bold text-3xl self-center"
+													onClick={() => {
+														fetchCards(page + 1);
+													}}
+												>
+													Next
+												</p>
+											)}
+										</div>
+									</div>
+								);
             case "loading":
                 return (<Spinner/>);
             default: 
