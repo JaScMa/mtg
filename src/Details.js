@@ -10,8 +10,11 @@ import { ReactComponent as Red } from "./img/mtg-red.svg";
 const Details = () => {
 	const { id } = useParams();
 	const [card, setCard] = useState({});
-	const [picture, setPicture] = useState(defaultPicture);
+	let picture = defaultPicture;
+	const [pic, setPic] = useState(defaultPicture);
 	const [state, setState] = useState("notLoaded");
+	const [tab, setTab] = useState("text");
+
 
 	useEffect(() => {
 		console.log("https://api.magicthegathering.io/v1/cards/" + id);
@@ -21,10 +24,14 @@ const Details = () => {
 			})
 			.then((data) => {
 				setCard(data.card);
-				setPicture(card.imageUrl);
 				setState("loaded");
 			});
-	}, []);
+		}, []);
+		
+		useEffect(() => {
+			picture = card.imageUrl || defaultPicture;
+			setPic(picture);
+		},[card]);
 
 	const insertMana = (str) => {
 		str = str.replace(/{/g, "");
@@ -35,17 +42,17 @@ const Details = () => {
 			manaCost.map((mana, i) => {
 				switch(mana) {
 					case "W": 
-						return <White key={i} alt="w" className="fill-white m-1" width="40pt" height="40pt" fill="blue"/>;
+						return <White key={i} alt="white" className="fill-white m-1" width="40pt" height="40pt" fill="blue"/>;
 					case "B": 
-						return <Black key={i} alt="w" className="fill-black m-1" width="40pt" height="40pt"/>;
+						return <Black key={i} alt="black" className="fill-black m-1" width="40pt" height="40pt"/>;
 					case "R": 
-						return <Red key={i} alt="w" className="fill-red-800 m-1" width="40pt" height="40pt"/>;
+						return <Red key={i} alt="red" className="fill-red-800 m-1" width="40pt" height="40pt"/>;
 					case "U": 
-						return <Blue key={i} alt="w" className="fill-blue-600 m-1" width="40pt" height="40pt"/>;
+						return <Blue key={i} alt="blue" className="fill-blue-600 m-1" width="40pt" height="40pt"/>;
 					case "G": 
-						return <Green key={i} alt="w" className="fill-green-900 m-1" width="40pt" height="40pt"/>;
+						return <Green key={i} alt="green" className="fill-green-900 m-1" width="40pt" height="40pt"/>;
 					default: 
-					 return <p key={i} className="text-xl m-1">{mana}</p>
+					 return <p key={i} className="text-5xl m-1">{mana}</p>
 				}
 	
 			})
@@ -58,7 +65,7 @@ const Details = () => {
 		state === "loaded" && (
 			<div className="p-t-9 px-9">
 				<div className="flex justify-center m-4">
-					<img className="rounded-xl shadow-xl" src={picture} alt="card"></img>
+					<img className="rounded-xl shadow-xl" src={pic} alt="card"></img>
 				</div>
 				<div className="text-center">
 					<p className="p-4 text-3xl">{card.name}</p>
@@ -69,26 +76,78 @@ const Details = () => {
 				<div className="text-center rounded-2xl shadow-lg ">
 					<div>
 						<ul className="flex flex-row ">
-							<li className="cursor-pointer px-6 py-2 self-end rounded-t-lg bg-darkPurple">
+							<li
+								className={
+									"cursor-pointer px-6 py-2 self-end rounded-t-lg " +
+									(tab === "text" ? " bg-darkPurple" : "")
+								}
+								onClick={() => setTab("text")}
+							>
 								Text
 							</li>
-							<li className="cursor-pointer px-6 py-2 self-end rounded-t-lg">
+							<li
+								className={
+									"cursor-pointer px-6 py-2 self-end rounded-t-lg" +
+									(tab === "legal" ? " bg-darkPurple" : "")
+								}
+								onClick={() => setTab("legal")}
+							>
 								Legalities
 							</li>
+							{(card.rulings) && (<li
+								className={
+									"cursor-pointer px-6 py-2 self-end rounded-t-lg" +
+									(tab === "rule" ? " bg-darkPurple" : "")
+								}
+								onClick={() => setTab("rule")}
+							>
+								Rules
+							</li>)}
 						</ul>
 					</div>
-					<div className="p-4 flex justify-center rounded-tr-2xl rounded-b-2xl bg-gradient-to-t from-blueishGreen to-darkPurple">
-						<p>{card.text}</p>
-						{/* <table className="w-full">
-		<thead>
-		<th className="border-2 p-5 text-xl">Format</th>
-		<th className="border-2 p-5 text-xl">Legality</th>
-		</thead>
-		<tr>
-		<td className="border-2 p-5 text-xl">Format</td>
-		<td className="border-2 p-5 text-xl">Legality</td>
-		</tr>
-	</table> */}
+					<div
+						className={
+							"p-4 flex justify-center bg-gradient-to-t from-blueishGreen to-darkPurple " +
+							(tab === "text" ? "rounded-tr-2xl rounded-b-2xl" : "rounded-2xl")
+						}
+					>
+						{tab === "text" && <p>{card.text}</p>}
+						{tab === "legal" && (
+							<table className="w-full">
+								<thead>
+									<tr>
+										<th className="border-2 p-5 text-2xl">Format</th>
+										<th className="border-2 p-5 text-2xl">Legality</th>
+									</tr>
+								</thead>
+								{card.legalities.map((row, i) => (
+									<tbody key={i}>
+										<tr>
+											<td className="border-2 p-5 text-xl">{row.format}</td>
+											<td className="border-2 p-5 text-xl">{row.legality}</td>
+										</tr>
+									</tbody>
+								))}
+							</table>
+						)}
+						{tab === "rule" && (
+							<table className="w-full">
+								<thead>
+									<tr>
+										<th className="border-2 p-5 text-2xl">Date</th>
+										<th className="border-2 p-5 text-2xl">Rule</th>
+									</tr>
+								</thead>
+								{card.rulings.map((row, i) => (
+									<tbody key={i}>
+										<tr>
+											<td className="border-2 p-5 text-xl">{row.date}</td>
+											<td className="border-2 p-5 text-xl">{row.text}</td>
+										</tr>
+									</tbody>
+								))}
+							</table>
+						)}
 					</div>
 				</div>
 			</div>
