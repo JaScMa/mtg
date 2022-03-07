@@ -58,7 +58,7 @@ const Search = () => {
 													Prev
 												</p>
 											)}
-											<div className="text-center">
+											<div>
                                                 <input onChange={change => {setPage((change.target.value > maxPage) ? maxPage : change.target.value)}} onSubmit={e => {fetchCards(page)}}
                                                 type="number"
                                                  value={page}
@@ -89,88 +89,128 @@ const Search = () => {
         }
     }
 
-    return(
-        <div className="center">
-            <form 
-            className="search-box shadow-xl bg-gradient-to-t from-blueishGreen via-lightPurple to-darkPurple"
-            onSubmit={(e) => {
-                e.preventDefault();
-                setPage(1);
-                fetchCards(1);
-                setState("loading");
-            }}
-            >
+    return (
+			<div className="center">
+				<form
+					className="search-box shadow-xl bg-gradient-to-t from-blueishGreen via-lightPurple to-darkPurple"
+					onSubmit={(e) => {
+						e.preventDefault();
+						setPage(1);
+						fetchCards(1);
+						setState("loading");
+					}}
+				>
+					<input
+						className="w-4/5"
+						id="cardName"
+						placeholder="Name"
+						onChange={(change) => setName(change.target.value)}
+					/>
 
-    
-                    <input 
-                    id="cardName"
-                    placeholder="Name"
-                    onChange={(change)=> setName(change.target.value)}
-                    />
+					<select
+						className="w-4/5"
+						id="type"
+						onChange={(change) => setType(change.target.value)}
+						style={{ color: type === "" ? "#9da4b0" : "black" }}
+					>
+						<option value="">Type</option>
+						{types.map((type) => (
+							<option value={type} key={type}>
+								{type}
+							</option>
+						))}
+					</select>
 
-                    <select
-                        id="type"
-                        onChange={(change)=> setType(change.target.value)}
-                        style={{color : (type === "")? "#9da4b0" : "black"}}
-                        >
-                        <option value="">Type</option>
-                        {types.map((type) => (
-                            <option value={type} key={type}>
-                                {type}
-                            </option>
-                        ))}
-                    </select>
+					<select
+						className="w-4/5"
+						id="rarity"
+						onChange={(change) => setRarity(change.target.value)}
+						style={{ color: rarity === "" ? "#9da4b0" : "black" }}
+					>
+						<option value="" key="">
+							Rarity
+						</option>
+						{rarities.map((rarity) => (
+							<option value={rarity} key={rarity}>
+								{rarity}
+							</option>
+						))}
+					</select>
 
-                    <select 
-                        id="rarity"
-                        onChange={(change)=> setRarity(change.target.value)}
-                        style={{color : (rarity === "")? "#9da4b0" : "black"}}
-                        >   
-                        <option value="" key="">Rarity</option>
-                        {rarities.map((rarity) => (
-                            <option value={rarity} key={rarity}>
-                                {rarity}
-                            </option>
-                        ))}
-                        
-                    </select>
-                    <div className="flex justify-around flex-row p-3">
-                            <White 
-                            alt="white"
-                            className={((color.includes("white,")) ? "fill-white" : "fill-stone-500")}
-                            onClick={() => (setColor((color.includes( "white,")) ? color.replace("white,", "") : color.concat("white,")))}
-                            />
-                            <Red 
-                            alt="red"
-                            className={(color.includes("red,")) ? "fill-red-800" : "fill-stone-500"}
-                            onClick={() => (setColor((color.includes( "red,")) ? color.replace("red,", "") : color.concat("red,")))}
-                            />
-                            <Blue 
-                            alt="blue"
-                            className={(color.includes("blue,")) ? "fill-blue-600" : "fill-stone-500"}
-                            onClick={() => (setColor((color.includes( "blue,")) ? color.replace("blue,", "") : color.concat("blue,")))}
-                            />
-                            <Green 
-                            alt="green"
-                            className={(color.includes("green,")) ? "fill-green-900" : "fill-stone-500"}
-                            onClick={() => (setColor((color.includes( "green,")) ? color.replace("green,", "") : color.concat("green,")))}
-                            />
-                            <Black 
-                            alt="black"
-                            className={(color.includes("black,")) ? "fill-black" : "fill-stone-500"}
-                            onClick={() => (setColor((color.includes( "black,")) ? color.replace("black,", "") : color.concat("black,")))}
-                            />
-                           
-                    </div>
-                <button className="hover:brightness-110 shadow-lg bg-gradient-to-b from-burningRed to-deepBlue">
-                    Search
-                </button>
-            </form>
-            <div>
-                {loadingState(state)}
-            </div>
-        </div>
-    )
+					<div className="flex justify-around flex-row p-3">
+						<White
+							alt="white"
+							className={
+								color.includes("white,") ? "fill-white" : "fill-stone-500"
+							}
+							onClick={() =>
+								setColor(
+									color.includes("white,")
+										? color.replace("white,", "")
+										: color.concat("white,")
+								)
+							}
+						/>
+						<Red
+							alt="red"
+							className={
+								color.includes("red,") ? "fill-red-800" : "fill-stone-500"
+							}
+							onClick={() =>
+								setColor(
+									color.includes("red,")
+										? color.replace("red,", "")
+										: color.concat("red,")
+								)
+							}
+						/>
+						<Blue
+							alt="blue"
+							className={
+								color.includes("blue,") ? "fill-blue-600" : "fill-stone-500"
+							}
+							onClick={() =>
+								setColor(
+									color.includes("blue,")
+										? color.replace("blue,", "")
+										: color.concat("blue,")
+								)
+							}
+						/>
+						<Green
+							alt="green"
+							className={
+								color.includes("green,") ? "fill-green-900" : "fill-stone-500"
+							}
+							onClick={() =>
+								setColor(
+									color.includes("green,")
+										? color.replace("green,", "")
+										: color.concat("green,")
+								)
+							}
+						/>
+						<Black
+							alt="black"
+							className={
+								color.includes("black,") ? "fill-black" : "fill-stone-500"
+							}
+							onClick={() =>
+								setColor(
+									color.includes("black,")
+										? color.replace("black,", "")
+										: color.concat("black,")
+								)
+							}
+						/>
+					</div>
+					<button className="hover:brightness-110 shadow-lg bg-gradient-to-b from-burningRed to-deepBlue">
+						Search
+					</button>
+				</form>
+				<div>{loadingState(state)}</div>
+			</div>
+		);
 }
 
 export default Search;

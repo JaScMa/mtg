@@ -26,15 +26,15 @@ const Card = ({ card }) => {
 			manaCost.map((mana, i) => {
 				switch(mana) {
 					case "W": 
-						return <White key={i} alt="w" className="fill-white m-1" width="20pt" height="20pt" fill="blue"/>;
+						return <White key={i} alt="white" className="fill-white m-1" width="20pt" height="20pt" fill="blue"/>;
 					case "B": 
-						return <Black key={i} alt="w" className="fill-black m-1" width="20pt" height="20pt"/>;
+						return <Black key={i} alt="black" className="fill-black m-1" width="20pt" height="20pt"/>;
 					case "R": 
-						return <Red key={i} alt="w" className="fill-red-800 m-1" width="20pt" height="20pt"/>;
+						return <Red key={i} alt="red" className="fill-red-800 m-1" width="20pt" height="20pt"/>;
 					case "U": 
-						return <Blue key={i} alt="w" className="fill-blue-600 m-1" width="20pt" height="20pt"/>;
+						return <Blue key={i} alt="blue" className="fill-blue-600 m-1" width="20pt" height="20pt"/>;
 					case "G": 
-						return <Green key={i} alt="w" className="fill-green-900 m-1" width="20pt" height="20pt"/>;
+						return <Green key={i} alt="green" className="fill-green-900 m-1" width="20pt" height="20pt"/>;
 					default: 
 					 return <p key={i} className="text-xl m-1">{mana}</p>
 				}
@@ -57,7 +57,7 @@ const Card = ({ card }) => {
 						<img className="card-img" src={img} alt="artwork"></img>
 						{(img === defaultPicture || hovered) && (
 							<div className="overlay-text">
-								<div className="">
+								<div>
 									<h1>{card.name}</h1>
 									<div className=" flex flex-row justify-center">
 										{(!card.manaCost) ? "" : insertMana(card.manaCost)}

@@ -17,17 +17,15 @@
     position: absolute;
     border-radius: 13px;
     z-index: 100;
-
-    padding: 15px;
+    padding: 25px;
     flex-wrap: wrap;
     text-align: center;
     height: 100%;
-    width: 100%;
     display: flex;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.342);
-    overflow: scroll;
-    scrollbar-width: none;
+    background-color: rgba(0, 0, 0, 0.37);
+
+
 }
 .overlay-text h1 {
     margin-bottom: 30px;

@@ -10,7 +10,6 @@ import { ReactComponent as Red } from "./img/mtg-red.svg";
 const Details = () => {
 	const { id } = useParams();
 	const [card, setCard] = useState({});
-	let picture = defaultPicture;
 	const [pic, setPic] = useState(defaultPicture);
 	const [state, setState] = useState("notLoaded");
 	const [tab, setTab] = useState("text");
@@ -29,7 +28,7 @@ const Details = () => {
 		}, []);
 		
 		useEffect(() => {
-			picture = card.imageUrl || defaultPicture;
+			let picture = card.imageUrl || defaultPicture;
 			setPic(picture);
 		},[card]);
 
@@ -63,14 +62,14 @@ const Details = () => {
 
 	return (
 		state === "loaded" && (
-			<div className="p-t-9 px-9">
+			<div className="p-9">
 				<div className="flex justify-center m-4">
 					<img className="rounded-xl shadow-xl" src={pic} alt="card"></img>
 				</div>
 				<div className="text-center">
 					<p className="p-4 text-3xl">{card.name}</p>
 					<div className="flex flex-row justify-center">
-						{insertMana(card.manaCost)}
+						{insertMana(card.manaCost || "")}
 					</div>
 				</div>
 				<div className="text-center rounded-2xl shadow-lg ">
@@ -85,7 +84,7 @@ const Details = () => {
 							>
 								Text
 							</li>
-							<li
+							{(card.legalities) && (<li
 								className={
 									"cursor-pointer px-6 py-2 self-end rounded-t-lg" +
 									(tab === "legal" ? " bg-darkPurple" : "")
@@ -93,7 +92,7 @@ const Details = () => {
 								onClick={() => setTab("legal")}
 							>
 								Legalities
-							</li>
+							</li>)}
 							{(card.rulings) && (<li
 								className={
 									"cursor-pointer px-6 py-2 self-end rounded-t-lg" +
@@ -111,20 +110,20 @@ const Details = () => {
 							(tab === "text" ? "rounded-tr-2xl rounded-b-2xl" : "rounded-2xl")
 						}
 					>
-						{tab === "text" && <p>{card.text}</p>}
+						{tab === "text" && <p className="text-xl py-8 px-14">{card.text}</p>}
 						{tab === "legal" && (
-							<table className="w-full">
+							<table className="w-full mb-6">
 								<thead>
 									<tr>
-										<th className="border-2 p-5 text-2xl">Format</th>
-										<th className="border-2 p-5 text-2xl">Legality</th>
+										<th className="border-2 py-5 text-xl underline">Format</th>
+										<th className="border-2 py-5 text-xl underline">Legality</th>
 									</tr>
 								</thead>
 								{card.legalities.map((row, i) => (
 									<tbody key={i}>
 										<tr>
-											<td className="border-2 p-5 text-xl">{row.format}</td>
-											<td className="border-2 p-5 text-xl">{row.legality}</td>
+											<td className="border-2 py-5 text-xl">{row.format}</td>
+											<td className="border-2 py-5 text-xl">{row.legality}</td>
 										</tr>
 									</tbody>
 								))}
@@ -134,15 +133,15 @@ const Details = () => {
 							<table className="w-full">
 								<thead>
 									<tr>
-										<th className="border-2 p-5 text-2xl">Date</th>
-										<th className="border-2 p-5 text-2xl">Rule</th>
+										<th className="border-2 py-5 text-xl underline">Date</th>
+										<th className="border-2 py-5 text-xl underline">Rule</th>
 									</tr>
 								</thead>
 								{card.rulings.map((row, i) => (
 									<tbody key={i}>
 										<tr>
-											<td className="border-2 p-5 text-xl">{row.date}</td>
-											<td className="border-2 p-5 text-xl">{row.text}</td>
+											<td className="border-2 py-5 text-xl">{row.date}</td>
+											<td className="border-2 py-5 text-xl">{row.text}</td>
 										</tr>
 									</tbody>
 								))}
@@ -150,6 +149,7 @@ const Details = () => {
 						)}
 					</div>
 				</div>
+
 			</div>
 		)
 	);
