@@ -7,16 +7,17 @@ import { ReactComponent as Blue } from "./img/mtg-blue.svg";
 import { ReactComponent as Black } from "./img/mtg-black.svg";
 import { ReactComponent as Red } from "./img/mtg-red.svg";
 
+
+
 const Details = () => {
 	const { id } = useParams();
 	const [card, setCard] = useState({});
 	const [pic, setPic] = useState(defaultPicture);
-	const [state, setState] = useState("notLoaded");
+	const [state, setState] = useState("loading");
 	const [tab, setTab] = useState("text");
 
 
 	useEffect(() => {
-		console.log("https://api.magicthegathering.io/v1/cards/" + id);
 		fetch("https://api.magicthegathering.io/v1/cards/" + id)
 			.then((res) => {
 				return res.json();
@@ -61,7 +62,7 @@ const Details = () => {
 	}
 
 	return (
-		state === "loaded" && (
+		(state === "loaded") && (
 			<div className="p-9">
 				<div className="flex justify-center m-4">
 					<img className="rounded-xl shadow-xl" src={pic} alt="card"></img>
