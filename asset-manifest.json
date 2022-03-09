@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/mtg/static/css/main.01dc3726.css",
-    "main.js": "/mtg/static/js/main.b022d49c.js",
+    "main.js": "/mtg/static/js/main.51ed0338.js",
     "static/js/787.db1e3268.chunk.js": "/mtg/static/js/787.db1e3268.chunk.js",
     "static/media/card-background.jpeg": "/mtg/static/media/card-background.7feece429b8b029106b7.jpeg",
     "static/media/mtg-white.svg": "/mtg/static/media/mtg-white.631ab397877e3deebccab6c3bd2d7f06.svg",
@@ -12,11 +12,11 @@
     "static/media/home.svg": "/mtg/static/media/home.115bd1d3c16e9b55c4a77911ae506c49.svg",
     "index.html": "/mtg/index.html",
     "main.01dc3726.css.map": "/mtg/static/css/main.01dc3726.css.map",
-    "main.b022d49c.js.map": "/mtg/static/js/main.b022d49c.js.map",
+    "main.51ed0338.js.map": "/mtg/static/js/main.51ed0338.js.map",
     "787.db1e3268.chunk.js.map": "/mtg/static/js/787.db1e3268.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.01dc3726.css",
-    "static/js/main.b022d49c.js"
+    "static/js/main.51ed0338.js"
   ]
 }
