@@ -47,7 +47,7 @@ const Card = ({ card }) => {
    
 
     return (
-			<Link to={"mtg/Details/" + card.id}>
+			<Link to={"/Details/" + card.id}>
 				<div
 					className="my-10 shadow-xl"
 					onMouseEnter={() => setHovered(true)}
