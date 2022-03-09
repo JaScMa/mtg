@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Result from "./Result";
 import Spinner from "./Spinner";
 import "./style/search.css"

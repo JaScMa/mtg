@@ -26,7 +26,7 @@ const Details = () => {
 				setCard(data.card);
 				setState("loaded");
 			});
-		}, []);
+		});
 		
 		useEffect(() => {
 			let picture = card.imageUrl || defaultPicture;
