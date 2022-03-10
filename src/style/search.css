@@ -8,12 +8,13 @@
 input, select {
     margin: 10px auto;
     font-size: 28px;
-    text-align: center;
-    color: black;
+    padding-left: 20px;
+    color: white;
     border-radius: 10px;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
     background: transparent;
 }
+
 
 h1{
     font-size: 20px;

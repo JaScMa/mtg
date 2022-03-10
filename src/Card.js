@@ -56,7 +56,7 @@ const Card = ({ card }) => {
 					<div className="card-picture">
 						<img className="card-img" src={img} alt="artwork"></img>
 						{(img === defaultPicture || hovered) && (
-							<div className="overlay-text w-2/5 sm:w-full">
+							<div className="overlay-text w-full">
 								<div>
 									<h1>{card.name}</h1>
 									<div className=" flex flex-row justify-center">

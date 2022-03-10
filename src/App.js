@@ -6,7 +6,7 @@ import { ReactComponent as Home } from "./img/home.svg";
 const App = () => {
   return (
 		<HashRouter>
-			<div className="h-screen w-screen fixed overflow-y-scroll bg-gradient-to-t from-blueishGreen via-lightPurple to-darkPurple">
+			<div className="h-screen w-screen fixed overflow-y-scroll  bg-gradient-to-t from-blueishGreen via-lightPurple to-darkPurple touch-pan-y">
 				<header>
 					<Link to="/"><Home className="m-2" alt="home" width="20pt" height="20pt" fill="white"/></Link>
 				</header>

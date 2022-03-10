@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import Result from "./Result";
 import Spinner from "./Spinner";
-import "./style/search.css"
+import "./style/search.css";
 import { ReactComponent as White} from "./img/mtg-white.svg";
 import { ReactComponent as Green } from "./img/mtg-green.svg";
 import { ReactComponent as Blue } from "./img/mtg-blue.svg";
@@ -25,6 +25,8 @@ const Search = () => {
     const pageSize = 50;
 
 
+
+
     const fetchCards = async (page) => {
         setState("loading");
         setPage(page);
@@ -45,40 +47,41 @@ const Search = () => {
         switch (state) {
             case "loaded": 
                 return (
-									<div>
+									<div >
 										< Result cards = { cards } />
-										<div className="flex flex-row p-5">
-											{page > 1 && (
+										<div className="flex flex-row  justify-center p-5 pb-0">
 												<p
-													className="cursor-pointer m-2 font-bold text-3xl self-center"
+													className={`cursor-pointer mx-2 font-bold text-3xl self-center ${(page > 1) ? "" : "visibility: hidden" }`}
 													onClick={() => {
 														fetchCards(page - 1);
 													}}
 												>
 													Prev
 												</p>
-											)}
-											<div>
+											
+
                                                 <input onChange={change => {setPage((change.target.value > maxPage) ? maxPage : change.target.value)}} onSubmit={e => {fetchCards(page)}}
                                                 type="number"
                                                  value={page}
-                                                 min={1}
                                                  step="1"
+												 className="w-10 h-8 text-sm text-center mx-5 my-0 select-all "
                                                  />
-												<p>
-                                                    of {maxPage}
-												</p>
-											</div>
-											{page < maxPage && (
+
 												<p
-													className="cursor-pointer  m-2 font-bold text-3xl self-center"
-													onClick={() => {
+												className= { `cursor-pointer mx-2 font-bold text-3xl self-center ${ (page < maxPage) ? "" : " visibility: hidden"}`}
+												onClick={() => {
 														fetchCards(page + 1);
 													}}
-												>
+													>
 													Next
 												</p>
-											)}
+											
+										</div>
+										<div>
+
+													<p className="text-center">
+														of {maxPage}
+													</p>
 										</div>
 									</div>
 								);
@@ -110,8 +113,8 @@ const Search = () => {
 					<select
 						className="w-4/5"
 						id="type"
-						onChange={(change) => setType(change.target.value)}
-						style={{ color: type === "" ? "#9da4b0" : "black" }}
+						onChange={(change) => {setType(change.target.value);}}
+						style={{ color: type === "" ? "#9da4b0" : "white" }}
 					>
 						<option value="">Type</option>
 						{types.map((type) => (
@@ -125,7 +128,7 @@ const Search = () => {
 						className="w-4/5"
 						id="rarity"
 						onChange={(change) => setRarity(change.target.value)}
-						style={{ color: rarity === "" ? "#9da4b0" : "black" }}
+						style={{ color: rarity === "" ? "#9da4b0" : "white" }}
 					>
 						<option value="" key="">
 							Rarity
