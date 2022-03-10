@@ -43,54 +43,7 @@ const Search = () => {
     }
 
 
-    const loadingState = (state) => {
-        switch (state) {
-            case "loaded": 
-                return (
-									<div >
-										< Result cards = { cards } />
-										<div className="flex flex-row  justify-center p-5 pb-0">
-												<p
-													className={`cursor-pointer mx-2 font-bold text-3xl self-center ${(page > 1) ? "" : "visibility: hidden" }`}
-													onClick={() => {
-														fetchCards(page - 1);
-													}}
-												>
-													Prev
-												</p>
-											
 
-                                                <input onChange={change => {setPage((change.target.value > maxPage) ? maxPage : change.target.value)}} onSubmit={e => {fetchCards(page)}}
-                                                type="number"
-                                                 value={page}
-                                                 step="1"
-												 className="w-10 h-8 text-sm text-center mx-5 my-0 select-all "
-                                                 />
-
-												<p
-												className= { `cursor-pointer mx-2 font-bold text-3xl self-center ${ (page < maxPage) ? "" : " visibility: hidden"}`}
-												onClick={() => {
-														fetchCards(page + 1);
-													}}
-													>
-													Next
-												</p>
-											
-										</div>
-										<div>
-
-													<p className="text-center">
-														of {maxPage}
-													</p>
-										</div>
-									</div>
-								);
-            case "loading":
-                return (<Spinner/>);
-            default: 
-                return (<div></div>)
-        }
-    }
 
     return (
 			<div className="center">
@@ -107,13 +60,15 @@ const Search = () => {
 						className="w-4/5"
 						id="cardName"
 						placeholder="Name"
-						onChange={(change) => setName(change.target.value)}
+						onChange={(change) => setName(change.target.value.trim())}
 					/>
 
 					<select
 						className="w-4/5"
 						id="type"
-						onChange={(change) => {setType(change.target.value);}}
+						onChange={(change) => {
+							setType(change.target.value);
+						}}
 						style={{ color: type === "" ? "#9da4b0" : "white" }}
 					>
 						<option value="">Type</option>
@@ -211,9 +166,59 @@ const Search = () => {
 						Search
 					</button>
 				</form>
-				<div>{loadingState(state)}</div>
+				<div>
+					{state === "loaded" && (
+						<div>
+							<Result cards={cards} />
+							<div className="flex flex-row  justify-center p-5 pb-0">
+								<p
+									className={`cursor-pointer mx-2 font-bold text-3xl self-center ${
+										page > 1 ? "" : "visibility: hidden"
+									}`}
+									onClick={() => {
+										fetchCards(page - 1);
+									}}
+								>
+									Prev
+								</p>
+
+								<input
+									onChange={(change) => {
+										setPage(
+											change.target.value > maxPage
+												? maxPage
+												: change.target.value
+										);
+									}}
+									onSubmit={(e) => {
+										fetchCards(page);
+									}}
+									type="number"
+									value={page}
+									step="1"
+									className="w-10 h-8 text-sm text-center mx-5 my-0 select-all "
+								/>
+
+								<p
+									className={`cursor-pointer mx-2 font-bold text-3xl self-center ${
+										page < maxPage ? "" : " visibility: hidden"
+									}`}
+									onClick={() => {
+										fetchCards(page + 1);
+									}}
+								>
+									Next
+								</p>
+							</div>
+							<div>
+								<p className="text-center">of {maxPage}</p>
+							</div>
+						</div>
+					)}
+					{state === "loading" && <Spinner />}
+				</div>
 			</div>
 		);
-}
-
-export default Search;
+	}
+	
+	export default Search;
