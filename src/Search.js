@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import {  useEffect, useRef, useState } from "react";
 import Result from "./Result";
 import Spinner from "./Spinner";
 import "./style/search.css";
@@ -21,14 +21,27 @@ const Search = () => {
     const [cards, setCards] = useState("");
     const [state, setState] = useState("notLoaded");
     const [page, setPage] = useState(1);
-    const [maxPage, setMaxPage] = useState(0);
+	const [pageEdge, setPageEdge] = useState("min")
+    const [maxPage, setMaxPage] = useState(99);
     const pageSize = 50;
+	const win = useRef();
 
 
 
 
     const fetchCards = async (page) => {
         setState("loading");
+		if(page >= maxPage) {
+			page = maxPage;
+			setPageEdge("max")
+		}
+		else if(page <= 1){
+			page = 1;
+			setPageEdge("min");
+		}
+		else {
+			setPageEdge("");
+		}
         setPage(page);
         const url = `https://api.magicthegathering.io/v1/cards?name=${name}&colors=${color}&types=${type}&rarity=${rarity}&page=${page}&pageSize=${pageSize}`;
         fetch(url)
@@ -40,9 +53,12 @@ const Search = () => {
                 setCards(data.cards);
                 setState("loaded");
             })
+			
+			win.current.scrollIntoView();
     }
 
-
+	useEffect(() => {
+	},[])
 
 
     return (
@@ -51,20 +67,18 @@ const Search = () => {
 					className="search-box shadow-xl bg-gradient-to-t from-blueishGreen via-lightPurple to-darkPurple"
 					onSubmit={(e) => {
 						e.preventDefault();
-						setPage(1);
 						fetchCards(1);
-						setState("loading");
 					}}
 				>
 					<input
-						className="w-4/5"
+						className="w-4/5 max-w-md"
 						id="cardName"
 						placeholder="Name"
 						onChange={(change) => setName(change.target.value.trim())}
 					/>
 
 					<select
-						className="w-4/5"
+						className="w-4/5 max-w-md"
 						id="type"
 						onChange={(change) => {
 							setType(change.target.value);
@@ -80,7 +94,7 @@ const Search = () => {
 					</select>
 
 					<select
-						className="w-4/5"
+						className="w-4/5 max-w-md"
 						id="rarity"
 						onChange={(change) => setRarity(change.target.value)}
 						style={{ color: rarity === "" ? "#9da4b0" : "white" }}
@@ -166,42 +180,46 @@ const Search = () => {
 						Search
 					</button>
 				</form>
-				<div>
+				<div ref={win}>
 					{state === "loaded" && (
 						<div>
 							<Result cards={cards} />
 							<div className="flex flex-row  justify-center p-5 pb-0">
 								<p
 									className={`cursor-pointer mx-2 font-bold text-3xl self-center ${
-										page > 1 ? "" : "visibility: hidden"
+										pageEdge === "min" ? "visibility: hidden" : "" //wird nur angezeigt bei page>1
 									}`}
 									onClick={() => {
 										fetchCards(page - 1);
 									}}
 								>
-									Prev
+									Prev   
 								</p>
+								<form 
+								onSubmit={ (e) => {
+										e.preventDefault();
+											fetchCards(page);
+									}}
+								>
 
 								<input
-									onChange={(change) => {
-										setPage(
-											change.target.value > maxPage
-												? maxPage
-												: change.target.value
-										);
-									}}
-									onSubmit={(e) => {
-										fetchCards(page);
+									onClick = { e => {
+										e.target.select();
 									}}
 									type="number"
 									value={page}
 									step="1"
-									className="w-10 h-8 text-sm text-center mx-5 my-0 select-all "
+									className="w-10 h-8 text-sm text-center mx-5 my-0"
+									onChange={ e => {
+										setPage(e.target.value)
+									}
+									}
 								/>
+								</form>
 
 								<p
 									className={`cursor-pointer mx-2 font-bold text-3xl self-center ${
-										page < maxPage ? "" : " visibility: hidden"
+										pageEdge === "max" ? "visibility: hidden" : " " //wird nur angezeigt bei page<maxPage
 									}`}
 									onClick={() => {
 										fetchCards(page + 1);
