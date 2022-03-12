@@ -1,13 +1,21 @@
 # MTG Card Search
 
-## Setup
+## https://jascma.github.io/mtg/
 
-Because Webpack5 no longer includes polyfills. 
-Install the following 
+## Usage
 
-### npm i assert
-### npm i https-browserify
-### npm i os
-### npm i os-broserify
-### npm i react-app-rewired
-### npm i react-zlib-js
+Just choose the name, type, rarity and color of the cards you're searching - Done! 
+
+## Built with
+    - React.js
+    - Tailwind CSS
+    - SVG
+
+
+## Acknowledgments
+    - https://docs.magicthegathering.io/ 
+    - normalize.css 
+    - github-pages
+
+
+
